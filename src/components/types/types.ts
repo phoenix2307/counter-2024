@@ -1,11 +1,15 @@
 export type SetDisplayType = {}
 
-export type OutputDisplayType = {}
+export type OutputDisplayType = {
+    currentValue: number
+    increment: () => void
+    reset: () => void
+}
 
 export type ButtonType = {
-    style: string
+    disabled: boolean
     name: string
-    cb: ()=>void
+    cb: () => void
 }
 
 export type InputType = {
