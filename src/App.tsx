@@ -16,7 +16,7 @@ function App() {
 
     return (
         <div className="App">
-            <SetDisplay/>
+            {/*<SetDisplay/>*/}
             <OutputDisplay currentValue={currentValue} increment={incrementCounter} reset={resetCounter}/>
         </div>
     );

@@ -25,6 +25,7 @@ export const DisplayOutput = styled.div`
   border-radius: 7px;
   justify-content: center;
   align-items: center;
+  font-size: 58px;
 `
 
 export const DisplaySet = styled.div`

@@ -5,16 +5,12 @@ import {Button} from "../independent-components/Button";
 
 export const OutputDisplay: FC<OutputDisplayType> = (props) => {
 
-    const {currentValue, increment, reset
-    } = props
-
+    const {currentValue, increment, reset} = props
 
     const incrementCounter = () => {
-        console.log('Increment value')
         increment()
     }
     const resetCounter = () => {
-        console.log('reset counter')
         reset()
     }
 
