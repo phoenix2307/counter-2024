@@ -10,6 +10,7 @@ const Global = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Consolas;
   }
 `
 
@@ -17,9 +18,13 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <>
+        <Global/>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

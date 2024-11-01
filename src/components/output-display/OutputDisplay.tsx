@@ -5,7 +5,9 @@ import {Button} from "../independent-components/Button";
 
 export const OutputDisplay: FC<OutputDisplayType> = (props) => {
 
-    const {currentValue, increment, reset} = props
+    const {currentValue, increment, reset, stopCounting} = props
+
+    const numberColor = stopCounting ? 'red' : 'inherit'
 
     const incrementCounter = () => {
         increment()
@@ -16,7 +18,7 @@ export const OutputDisplay: FC<OutputDisplayType> = (props) => {
 
     return (
         <DisplayContainer>
-            <DisplayOutput>
+            <DisplayOutput color={numberColor}>
                 {currentValue}
             </DisplayOutput>
             <BlockButtons>

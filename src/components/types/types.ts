@@ -4,6 +4,7 @@ export type OutputDisplayType = {
     currentValue: number
     increment: () => void
     reset: () => void
+    stopCounting: boolean
 }
 
 export type ButtonType = {
