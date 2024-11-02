@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createGlobalStyle} from "styled-components";
+import App_UnitedCounter from "./App_UnitedCounter";
 
 const Global = createGlobalStyle`
   * {
@@ -21,7 +22,8 @@ root.render(
     <>
         <Global/>
         <React.StrictMode>
-            <App />
+            {/*<App />*/}
+            <App_UnitedCounter/>
         </React.StrictMode>
     </>
 
