@@ -1,37 +1,66 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {SetDisplay} from "./components/set-display/SetDisplay";
 import {OutputDisplay} from "./components/output-display/OutputDisplay";
-import styled from "styled-components";
+import {AppWrapper} from "./components/styled-comps/styles";
 
-const AppWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  padding: 2rem;
-  background-color: #182a36;
-  //color: #b3d4fc;
-`
 
 function App() {
     const [currentValue, setCurrentValue] = useState(0)
     const [stopCounting, setStopCounting] = useState(false)
+    // const [output, setOutput] = useState(false)
+    const [min, setMin]=useState(0)
+    const [max, setMax]=useState(5)
+
+
+    const color = stopCounting ? 'red' : 'inherit'
 
     const incrementCounter = () => {
         const newValue = currentValue + 1
         setCurrentValue(newValue)
+        newValue === max ? setStopCounting(true) : setStopCounting(false)
     }
     const resetCounter = () => {
-        setCurrentValue(0)
+        setCurrentValue(min)
+        setStopCounting(false)
+    }
+
+    const setCounter = (minValue: number, maxValue: number) => {
+        setMin(minValue)
+        setMax(maxValue)
+        setCurrentValue(minValue)
+        // setOutput(true)
     }
 
     return (
+
         <AppWrapper>
-            {/*<SetDisplay/>*/}
+
+{/*            {
+                output
+                    ? <OutputDisplay
+                        currentValue={currentValue}
+                        increment={incrementCounter}
+                        reset={resetCounter}
+                        color={numberColor}
+                        min={min}
+                        max={max}
+                    />
+                    : <SetDisplay setCounter={setCounter}
+                                  min={min}
+                                  max={max}/>
+
+            }*/}
+            <SetDisplay setCounter={setCounter}
+                        min={min}
+                        max={max}/>
             <OutputDisplay
                 currentValue={currentValue}
                 increment={incrementCounter}
                 reset={resetCounter}
-                stopCounting={stopCounting}
+                color={color}
+                min={min}
+                max={max}
             />
         </AppWrapper>
     );

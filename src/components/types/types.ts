@@ -1,10 +1,16 @@
-export type SetDisplayType = {}
+export type SetDisplayType = {
+    setCounter: (minValue: number, maxValue: number) => void
+    min: number
+    max: number
+}
 
 export type OutputDisplayType = {
     currentValue: number
     increment: () => void
     reset: () => void
-    stopCounting: boolean
+    color: string
+    min: number
+    max: number
 }
 
 export type ButtonType = {
@@ -14,6 +20,7 @@ export type ButtonType = {
 }
 
 export type InputType = {
-    value: string
-    cb: (value: string) => void
+    value: number
+    cb: (value: number) => void
+    error: boolean
 }

@@ -5,25 +5,26 @@ import {Button} from "../independent-components/Button";
 
 export const OutputDisplay: FC<OutputDisplayType> = (props) => {
 
-    const {currentValue, increment, reset, stopCounting} = props
+    const {currentValue, increment, reset, min, max, color} = props
 
-    const numberColor = stopCounting ? 'red' : 'inherit'
-
-    const incrementCounter = () => {
+    const incrementHandler = () => {
         increment()
     }
-    const resetCounter = () => {
+    const resetHandler = () => {
         reset()
     }
+    const disabledIncrement = (currentValue === max || currentValue > max)
+    const disabledReset = (currentValue === min)
 
     return (
+
         <DisplayContainer>
-            <DisplayOutput color={numberColor}>
+            <DisplayOutput color={color}>
                 {currentValue}
             </DisplayOutput>
             <BlockButtons>
-                <Button disabled={false} name={'INCREMENT'} cb={incrementCounter}/>
-                <Button disabled={false} name={'RESET'} cb={resetCounter}/>
+                <Button disabled={disabledIncrement} name={'INCREMENT'} cb={incrementHandler}/>
+                <Button disabled={disabledReset} name={'RESET'} cb={resetHandler}/>
             </BlockButtons>
 
         </DisplayContainer>

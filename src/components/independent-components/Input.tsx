@@ -1,16 +1,22 @@
-import {FC} from "react";
+import {ChangeEvent, FC} from "react";
 import {InputType} from "../types/types";
-import s from './Input.module.css'
+import {InputStyle} from "../styled-comps/styles";
 
-export const Input:FC<InputType> = (props) => {
-    const {value, cb} = props
+export const Input: FC<InputType> = (props) => {
+    const {value, cb, error} = props
 
-    const currentStyle = s.inputStyle
-    const errorStyle = s.errorStyle
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        cb(+e.currentTarget.value)
+    }
 
     return (
         <div>
-            <input className={currentStyle} type="number"/>
+            <InputStyle
+                value={value}
+                onChange={onChangeHandler}
+                type="number"
+            />
+
         </div>
     )
 }
