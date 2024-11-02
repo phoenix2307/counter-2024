@@ -85,11 +85,14 @@ export const ButtonStyle = styled.button`
   border-radius: 15px;
   text-align: center;
 `
+type InputStyleProps = {
+    error?: boolean;
+}
 
-export const InputStyle = styled.input`
+export const InputStyle = styled.input<InputStyleProps>`
   height: 31px;
   width: 200px;
   border-radius: 5px;
-  background-color: ${error => error ? `#aeccf6` : `#a94c4c`} ;
+  background-color: ${props => props.error ? `#a94c4c` : `#aeccf6`} ;
   font-weight: bold;
 `

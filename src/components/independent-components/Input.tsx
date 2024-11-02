@@ -6,7 +6,7 @@ export const Input: FC<InputType> = (props) => {
     const {value, cb, error} = props
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        cb(+e.currentTarget.value)
+        cb(e.currentTarget.value)
     }
 
     return (
@@ -15,6 +15,7 @@ export const Input: FC<InputType> = (props) => {
                 value={value}
                 onChange={onChangeHandler}
                 type="number"
+                error={error}
             />
 
         </div>

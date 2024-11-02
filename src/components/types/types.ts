@@ -21,6 +21,7 @@ export type ButtonType = {
 
 export type InputType = {
     value: number
-    cb: (value: number) => void
-    error: boolean
+    cb: (value: string) => void
+    error?: boolean
+    // error?: string
 }

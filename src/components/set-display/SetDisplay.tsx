@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {SetDisplayType} from "../types/types";
 import {BlockButtons, BlockInput, DisplayContainer, DisplaySet} from "../styled-comps/styles";
 import {Button} from "../independent-components/Button";
@@ -11,16 +11,27 @@ export const SetDisplay: FC<SetDisplayType> = (props) => {
     const [minValue, setMinValue] = useState(min)
     const [maxValue, setMaxValue] = useState(max)
     const [error, setError] = useState(false)
+    const [disabledBtn, setDisabledBtn] = useState(false)
+
+    useEffect(()=>{
+        if (minValue === maxValue || minValue > maxValue) {
+            setError(true)
+            setDisabledBtn(true)
+        } else {
+            setError(false)
+            setDisabledBtn(false)
+        }
+    },[minValue, maxValue])
 
     const setCounterHandler = () => {
         setCounter(minValue, maxValue)
     }
 
-    const minInputHandler = (value: number) => {
-        setMinValue(value)
+    const minInputHandler = (value: string) => {
+        setMinValue(+value)
     }
-    const maxInputHandler = (value: number) => {
-        setMaxValue(value)
+    const maxInputHandler = (value: string) => {
+        setMaxValue(+value)
     }
 
 
@@ -37,7 +48,7 @@ export const SetDisplay: FC<SetDisplayType> = (props) => {
                 </BlockInput>
             </DisplaySet>
             <BlockButtons>
-                <Button disabled={false} name={'SET'} cb={setCounterHandler}/>
+                <Button disabled={disabledBtn} name={'SET'} cb={setCounterHandler}/>
             </BlockButtons>
         </DisplayContainer>
     )

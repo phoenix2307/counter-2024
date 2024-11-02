@@ -9,11 +9,14 @@ function App() {
     const [currentValue, setCurrentValue] = useState(0)
     const [stopCounting, setStopCounting] = useState(false)
     // const [output, setOutput] = useState(false)
-    const [min, setMin]=useState(0)
-    const [max, setMax]=useState(5)
+    const [min, setMin] = useState(0)
+    const [max, setMax] = useState(5)
 
+    let color = stopCounting ? 'red' : 'inherit'
 
-    const color = stopCounting ? 'red' : 'inherit'
+    useEffect(()=>{
+        setStopCounting(false)
+    }, [min, max])
 
     const incrementCounter = () => {
         const newValue = currentValue + 1
@@ -29,14 +32,13 @@ function App() {
         setMin(minValue)
         setMax(maxValue)
         setCurrentValue(minValue)
-        // setOutput(true)
     }
 
     return (
 
         <AppWrapper>
 
-{/*            {
+            {/*            {
                 output
                     ? <OutputDisplay
                         currentValue={currentValue}
