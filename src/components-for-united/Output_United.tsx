@@ -9,12 +9,13 @@ type OutputType = {
     settingCounter: () => void
     disabledInc: boolean
     disabledReset: boolean
+    color: string
 }
 export const Output_United: FC<OutputType> = (props) => {
     const {
         currentValue, incrementCounter,
         resetCounter, settingCounter,
-        disabledInc, disabledReset
+        disabledInc, disabledReset, color
     } = props
 
 
@@ -30,7 +31,7 @@ export const Output_United: FC<OutputType> = (props) => {
 
     return (
         <DisplayContainer>
-            <DisplayOutput>
+            <DisplayOutput color={color}>
                 {currentValue}
             </DisplayOutput>
             <BlockButtons>

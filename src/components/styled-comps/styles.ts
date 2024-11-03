@@ -87,12 +87,15 @@ export const ButtonStyle = styled.button`
 `
 type InputStyleProps = {
     error?: boolean;
+    validate?: string;
 }
 
 export const InputStyle = styled.input<InputStyleProps>`
   height: 31px;
   width: 200px;
+  padding-left: 5px;
   border-radius: 5px;
-  background-color: ${props => props.error ? `#a94c4c` : `#aeccf6`} ;
+  background-color: ${props => props.error ? `#a94c4c` : `#aeccf6`};
+  background-color: ${props => props.validate};
   font-weight: bold;
 `

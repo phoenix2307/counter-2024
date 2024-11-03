@@ -11,9 +11,11 @@ function App_UnitedCounter() {
     const [disabledInc, setDisabledInc] = useState(false)
     const [disabledReset, setDisabledReset] = useState(false)
     const [showOutput, setShowOutput] = useState(true)
-
+    const [disabledSet, setDisabledSet] = useState(false)
+    const [validate, setValidate] = useState('#7dacea')
 
     //==================== FOR OUTPUT ============================
+    const colorOutput = (currentValue === max || currentValue > max) ? 'red' : '#7dacea'
     useEffect(() => {
         if ((currentValue === max || currentValue > max)) {
             setDisabledInc(true)
@@ -38,6 +40,15 @@ function App_UnitedCounter() {
         setShowOutput(false)
     }
     //======================== FOR SET ============================
+    useEffect(() => {
+        if (min === max || min > max) {
+            setDisabledSet(true)
+            setValidate('#a94c4c')
+        } else {
+            setDisabledSet(false)
+            setValidate('#7dacea')
+        }
+    }, [min, max])
 
     const setMInValue = (value: number) => {
         setMin(value)
@@ -63,6 +74,7 @@ function App_UnitedCounter() {
                                      settingCounter={settingCounter}
                                      disabledInc={disabledInc}
                                      disabledReset={disabledReset}
+                                     color={colorOutput}
                     />
                     : <Set_United
                         min={min}
@@ -70,6 +82,8 @@ function App_UnitedCounter() {
                         setMInValue={setMInValue}
                         setMaxValue={setMaxValue}
                         setCounter={setCounter}
+                        disabledSet={disabledSet}
+                        validate={validate}
                     />
             }
 

@@ -23,5 +23,5 @@ export type InputType = {
     value: number
     cb: (value: string) => void
     error?: boolean
-    // error?: string
+    validate?: string
 }

@@ -6,14 +6,19 @@ import {Button} from "../components/independent-components/Button";
 type SetUnitedType = {
     min: number
     max: number
-    setMInValue: (value:number) => void
-    setMaxValue: (value:number) => void
+    setMInValue: (value: number) => void
+    setMaxValue: (value: number) => void
     setCounter: () => void
+    disabledSet: boolean
+    validate: string
 }
 
 export const Set_United: FC<SetUnitedType> = (props) => {
 
-    const {min, max, setMInValue, setMaxValue, setCounter} = props
+    const {
+        min, max, setMInValue,
+        setMaxValue, setCounter, disabledSet, validate
+    } = props
 
     const setMinHandler = (value: string) => {
         setMInValue(+value)
@@ -29,15 +34,19 @@ export const Set_United: FC<SetUnitedType> = (props) => {
             <DisplayOutput>
                 <BlockInput>
                     <div>min value:</div>
-                    <Input value={min} cb={setMinHandler}/>
+                    <Input value={min}
+                           cb={setMinHandler}
+                           validate={validate}/>
                 </BlockInput>
                 <BlockInput>
                     <div>max value:</div>
-                    <Input value={max} cb={setMaxHandler}/>
+                    <Input value={max}
+                           cb={setMaxHandler}
+                           validate={validate}/>
                 </BlockInput>
             </DisplayOutput>
             <BlockButtons>
-                <Button disabled={false} name={'set'} cb={setHandler}/>
+                <Button disabled={disabledSet} name={'set'} cb={setHandler}/>
             </BlockButtons>
         </DisplayContainer>
     )
