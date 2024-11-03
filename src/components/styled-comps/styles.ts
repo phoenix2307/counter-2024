@@ -75,8 +75,8 @@ export const BlockInput = styled.div`
 `
 
 export const ButtonStyle = styled.button`
-  height: 50px;
-  width: 150px;
+  height: 45px;
+  width: 130px;
   background-color: ${props => props.disabled ? `#687d94` : `#7dacea`};
   opacity: ${props => props.disabled ? 0.5 : 1};
   color: black;
