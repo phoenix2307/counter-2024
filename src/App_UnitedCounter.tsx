@@ -14,14 +14,25 @@ function App_UnitedCounter() {
     const [disabledSet, setDisabledSet] = useState(false)
     const [validate, setValidate] = useState('#7dacea')
 
+    //==================== LOCAL STORAGE =============================
+    useEffect(() => {
+        const storedMin = localStorage.getItem('min value') || '0'
+        const storedMax = localStorage.getItem('max value') || '3'
+
+        setMin(+storedMin)
+        setMax(+storedMax)
+        setCurrentValue(+storedMin)
+    }, [])
+
     //==================== FOR OUTPUT ============================
     const colorOutput = (currentValue === max || currentValue > max) ? 'red' : '#7dacea'
     useEffect(() => {
-        if ((currentValue === max || currentValue > max)) {
-            setDisabledInc(true)
-        } else {
-            setDisabledInc(false)
-        }
+        setDisabledInc(currentValue >= max)
+        /*        if ((currentValue === max || currentValue > max)) {
+                    setDisabledInc(true)
+                } else {
+                    setDisabledInc(false)
+                }*/
     }, [currentValue])
 
     const incrementCounter = () => {
@@ -41,24 +52,31 @@ function App_UnitedCounter() {
     }
     //======================== FOR SET ============================
     useEffect(() => {
-        if (min === max || min > max) {
-            setDisabledSet(true)
-            setValidate('#a94c4c')
-        } else {
-            setDisabledSet(false)
-            setValidate('#7dacea')
-        }
+        const isInvalid = min >= max
+        setDisabledSet(isInvalid)
+        setValidate(isInvalid ? '#a94c4c' : '#7dacea')
+        /*        if (min === max || min > max) {
+                    setDisabledSet(true)
+                    setValidate('#a94c4c')
+                } else {
+                    setDisabledSet(false)
+                    setValidate('#7dacea')
+                }*/
     }, [min, max])
 
     const setMInValue = (value: number) => {
         setMin(value)
+
     }
 
     const setMaxValue = (value: number) => {
         setMax(value)
+
     }
 
     const setCounter = () => {
+        localStorage.setItem('min value', min.toString())
+        localStorage.setItem('max value', max.toString())
         setCurrentValue(min)
         setShowOutput(true)
     }
