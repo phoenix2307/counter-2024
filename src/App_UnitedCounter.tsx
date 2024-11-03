@@ -1,6 +1,7 @@
 import {AppWrapper} from "./components/styled-comps/styles";
 import {Output_United} from "./components-for-united/Output_United";
 import {useEffect, useState} from "react";
+import {Set_United} from "./components-for-united/Set_United";
 
 function App_UnitedCounter() {
 
@@ -9,9 +10,10 @@ function App_UnitedCounter() {
     const [max, setMax] = useState(3)
     const [disabledInc, setDisabledInc] = useState(false)
     const [disabledReset, setDisabledReset] = useState(false)
+    const [showOutput, setShowOutput] = useState(true)
 
 
-    // for Output
+    //==================== FOR OUTPUT ============================
     useEffect(() => {
         if ((currentValue === max || currentValue > max)) {
             setDisabledInc(true)
@@ -33,19 +35,44 @@ function App_UnitedCounter() {
     }
 
     const settingCounter = () => {
-
+        setShowOutput(false)
     }
-    // for Set
+    //======================== FOR SET ============================
+
+    const setMInValue = (value: number) => {
+        setMin(value)
+    }
+
+    const setMaxValue = (value: number) => {
+        setMax(value)
+    }
+
+    const setCounter = () => {
+        setCurrentValue(min)
+        setShowOutput(true)
+    }
+
 
     return (
         <AppWrapper>
-            <Output_United currentValue={currentValue}
-                           incrementCounter={incrementCounter}
-                           resetCounter={resetCounter}
-                           settingCounter={settingCounter}
-                           disabledInc={disabledInc}
-                           disabledReset={disabledReset}
-            />
+            {
+                showOutput
+                    ? <Output_United currentValue={currentValue}
+                                     incrementCounter={incrementCounter}
+                                     resetCounter={resetCounter}
+                                     settingCounter={settingCounter}
+                                     disabledInc={disabledInc}
+                                     disabledReset={disabledReset}
+                    />
+                    : <Set_United
+                        min={min}
+                        max={max}
+                        setMInValue={setMInValue}
+                        setMaxValue={setMaxValue}
+                        setCounter={setCounter}
+                    />
+            }
+
         </AppWrapper>
     );
 }
