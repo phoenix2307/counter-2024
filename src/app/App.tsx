@@ -14,7 +14,7 @@ function App() {
 
     let color = stopCounting ? 'red' : 'inherit'
 
-    useEffect(()=>{
+    useEffect(() => {
         setStopCounting(false)
     }, [min, max])
 
