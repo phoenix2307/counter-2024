@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
-import {SetDisplayType} from "../types/types";
-import {BlockButtons, BlockInput, DisplayContainer, DisplaySet} from "../styled-comps/styles";
+import {SetDisplayType} from "../../common/types/types";
+import {BlockButtons, BlockInput, DisplayContainer, DisplaySet} from "../../common/styled-comps/styles";
 import {Button} from "../independent-components/Button";
 import {Input} from "../independent-components/Input";
 

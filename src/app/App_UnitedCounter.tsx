@@ -1,7 +1,7 @@
-import {AppWrapper} from "./components/styled-comps/styles";
-import {Output_United} from "./components-for-united/Output_United";
+import {AppWrapper} from "../common/styled-comps/styles";
+import {Output_United} from "../components/components-for-united/Output_United";
 import {useEffect, useState} from "react";
-import {Set_United} from "./components-for-united/Set_United";
+import {Set_United} from "../components/components-for-united/Set_United";
 
 function App_UnitedCounter() {
 

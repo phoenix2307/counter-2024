@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import {createGlobalStyle} from "styled-components";
-import App_UnitedCounter from "./App_UnitedCounter";
+import App_UnitedCounter from "./app/App_UnitedCounter";
 
 const Global = createGlobalStyle`
   * {

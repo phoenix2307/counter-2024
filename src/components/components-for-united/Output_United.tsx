@@ -1,6 +1,6 @@
 import {FC, useState} from "react";
-import {BlockButtons, DisplayContainer, DisplayOutput} from "../components/styled-comps/styles";
-import {Button} from "../components/independent-components/Button";
+import {BlockButtons, DisplayContainer, DisplayOutput} from "../../common/styled-comps/styles";
+import {Button} from "../independent-components/Button";
 
 type OutputType = {
     currentValue: number

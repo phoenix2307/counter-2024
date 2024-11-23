@@ -1,7 +1,7 @@
 import {FC} from "react";
-import {BlockButtons, BlockInput, DisplayContainer, DisplayOutput} from "../components/styled-comps/styles";
-import {Input} from "../components/independent-components/Input";
-import {Button} from "../components/independent-components/Button";
+import {BlockButtons, BlockInput, DisplayContainer, DisplayOutput} from "../../common/styled-comps/styles";
+import {Input} from "../independent-components/Input";
+import {Button} from "../independent-components/Button";
 
 type SetUnitedType = {
     min: number

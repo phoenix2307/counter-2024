@@ -1,6 +1,6 @@
 import {ChangeEvent, FC} from "react";
-import {InputType} from "../types/types";
-import {InputStyle} from "../styled-comps/styles";
+import {InputType} from "../../common/types/types";
+import {InputStyle} from "../../common/styled-comps/styles";
 
 export const Input: FC<InputType> = (props) => {
     const {value, cb, error, validate} = props

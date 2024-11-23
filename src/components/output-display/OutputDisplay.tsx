@@ -1,6 +1,6 @@
 import {FC} from "react";
-import {OutputDisplayType} from "../types/types";
-import {BlockButtons, DisplayContainer, DisplayOutput} from "../styled-comps/styles";
+import {OutputDisplayType} from "../../common/types/types";
+import {BlockButtons, DisplayContainer, DisplayOutput} from "../../common/styled-comps/styles";
 import {Button} from "../independent-components/Button";
 
 export const OutputDisplay: FC<OutputDisplayType> = (props) => {

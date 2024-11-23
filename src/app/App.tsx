@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {SetDisplay} from "./components/set-display/SetDisplay";
-import {OutputDisplay} from "./components/output-display/OutputDisplay";
-import {AppWrapper} from "./components/styled-comps/styles";
+import {SetDisplay} from "../components/set-display/SetDisplay";
+import {OutputDisplay} from "../components/output-display/OutputDisplay";
+import {AppWrapper} from "../common/styled-comps/styles";
 
 
 function App() {

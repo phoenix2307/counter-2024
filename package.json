@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stb": "storybook dev -p 9009",
+    "sb": "storybook dev -p 9009",
     "build-storybook": "storybook build"
   },
   "eslintConfig": {
