@@ -1,37 +1,52 @@
 import {FC, useEffect, useState} from "react";
-import {SetDisplayType} from "../../common/types/types";
 import {BlockButtons, BlockInput, DisplayContainer, DisplaySet} from "../../common/styled-comps/styles";
 import {Button} from "../independent-components/Button";
 import {Input} from "../independent-components/Input";
+import {useDispatch, useSelector} from "react-redux";
+import {RootStateType} from "../../app/store";
+import {setCounterAC, setErrorAC, setMaxAC, setMiniAC} from "../../common/reducers/setDisplay-reducer";
 
+type SetDisplayWithReduxType = {}
 
-export const SetDisplay: FC<SetDisplayType> = (props) => {
-    const {setCounter, min, max} = props
+export const SetDisplay: FC<SetDisplayWithReduxType> = (props) => {
 
-    const [minValue, setMinValue] = useState(min)
-    const [maxValue, setMaxValue] = useState(max)
-    const [error, setError] = useState(false)
+    const dispatch = useDispatch()
+    const minValue = useSelector<RootStateType, number>(state => state.setDisplay.minValue)
+    const maxValue = useSelector<RootStateType, number>(state => state.setDisplay.maxValue)
+    const error = useSelector<RootStateType, boolean>(state => state.setDisplay.errorValue)
+
+    // const [error, setError] = useState(false)
     const [disabledBtn, setDisabledBtn] = useState(false)
-
+    //
+    // useEffect(()=>{
+    //     if (minValue === maxValue || minValue > maxValue) {
+    //         setError(true)
+    //         setDisabledBtn(true)
+    //     } else {
+    //         setError(false)
+    //         setDisabledBtn(false)
+    //     }
+    // },[minValue, maxValue])
+    //
     useEffect(()=>{
         if (minValue === maxValue || minValue > maxValue) {
-            setError(true)
+            dispatch(setErrorAC(true))
             setDisabledBtn(true)
         } else {
-            setError(false)
+            dispatch(setErrorAC(false))
             setDisabledBtn(false)
         }
     },[minValue, maxValue])
-
+    //
     const setCounterHandler = () => {
-        setCounter(minValue, maxValue)
+        dispatch(setCounterAC(minValue, maxValue))
     }
-
+    //
     const minInputHandler = (value: string) => {
-        setMinValue(+value)
+        dispatch(setMiniAC(+value))
     }
     const maxInputHandler = (value: string) => {
-        setMaxValue(+value)
+        dispatch(setMaxAC(+value))
     }
 
 

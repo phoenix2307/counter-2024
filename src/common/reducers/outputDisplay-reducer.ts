@@ -3,7 +3,9 @@ type StateType = {
 }
 type ActionsType = IncrementType | ResetType
 
-export const outputDisplayReducer = (state: StateType, action: ActionsType) => {
+const initialState = {currentValue: 0}
+
+export const outputDisplayReducer = (state: StateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case "INCREMENT":{
             return {...state, currentValue: action.currentValue + 1}
@@ -17,11 +19,11 @@ export const outputDisplayReducer = (state: StateType, action: ActionsType) => {
     }
 }
 
-const incrementAC = (currentValue: number) => {
+export const incrementAC = (currentValue: number) => {
     return {type: 'INCREMENT', currentValue} as const
 }
 
-const resetAC = (minValue: number) => {
+export const resetAC = (minValue: number) => {
     return {type: 'RESET', minValue} as const
 }
 type IncrementType = ReturnType<typeof incrementAC>

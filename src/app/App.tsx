@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
 import {SetDisplay} from "../components/set-display/SetDisplay";
 import {OutputDisplay} from "../components/output-display/OutputDisplay";
@@ -6,19 +6,21 @@ import {AppWrapper} from "../common/styled-comps/styles";
 
 
 function App() {
-    const [currentValue, setCurrentValue] = useState(0)
-    const [stopCounting, setStopCounting] = useState(false)
+
+    // const [currentValue, setCurrentValue] = useState(0)
     // const [output, setOutput] = useState(false)
-    const [min, setMin] = useState(0)
-    const [max, setMax] = useState(5)
+    // const [min, setMin] = useState(0)
+    // const [max, setMax] = useState(5)
+
+    /*const [stopCounting, setStopCounting] = useState(false)
 
     let color = stopCounting ? 'red' : 'inherit'
 
     useEffect(() => {
         setStopCounting(false)
-    }, [min, max])
+    }, [min, max])*/
 
-    const incrementCounter = () => {
+  /*  const incrementCounter = () => {
         const newValue = currentValue + 1
         setCurrentValue(newValue)
         newValue === max ? setStopCounting(true) : setStopCounting(false)
@@ -32,28 +34,13 @@ function App() {
         setMin(minValue)
         setMax(maxValue)
         setCurrentValue(minValue)
-    }
+    }*/
 
     return (
 
         <AppWrapper>
 
-            {/*            {
-                output
-                    ? <OutputDisplay
-                        currentValue={currentValue}
-                        increment={incrementCounter}
-                        reset={resetCounter}
-                        color={numberColor}
-                        min={min}
-                        max={max}
-                    />
-                    : <SetDisplay setCounter={setCounter}
-                                  min={min}
-                                  max={max}/>
-
-            }*/}
-            <SetDisplay setCounter={setCounter}
+           {/* <SetDisplay setCounter={setCounter}
                         min={min}
                         max={max}/>
             <OutputDisplay
@@ -63,7 +50,13 @@ function App() {
                 color={color}
                 min={min}
                 max={max}
-            />
+            />*/}
+
+            {/*============ With REDUX =============================*/}
+
+            <SetDisplay/>
+            <OutputDisplay/>
+
         </AppWrapper>
     );
 }

@@ -8,8 +8,8 @@ const rootReducer = combineReducers({
 });
 
 export const store = createStore(rootReducer);
-export type RootState = ReturnType<typeof store.getState>
-export type Dispatch = ReturnType<typeof store.dispatch>
+export type RootStateType = ReturnType<typeof store.getState>
+export type DispatchType = ReturnType<typeof store.dispatch>
 
 // @ts-ignore
 window.store = store

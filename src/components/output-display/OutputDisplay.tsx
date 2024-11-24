@@ -1,17 +1,33 @@
-import {FC} from "react";
-import {OutputDisplayType} from "../../common/types/types";
+import {FC, useEffect, useState} from "react";
 import {BlockButtons, DisplayContainer, DisplayOutput} from "../../common/styled-comps/styles";
 import {Button} from "../independent-components/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {RootStateType} from "../../app/store";
+import {incrementAC, resetAC} from "../../common/reducers/outputDisplay-reducer";
 
-export const OutputDisplay: FC<OutputDisplayType> = (props) => {
+type OutputDisplayWithReduxType = {}
 
-    const {currentValue, increment, reset, min, max, color} = props
+export const OutputDisplay: FC<OutputDisplayWithReduxType> = (props) => {
+
+    const dispatch = useDispatch()
+    const min = useSelector<RootStateType, number>(state => state.setDisplay.minValue)
+    const max = useSelector<RootStateType, number>(state => state.setDisplay.maxValue)
+    const currentValue = useSelector<RootStateType, number>(state => state.outputDisplay.currentValue)
+
+    // const [stopCounting, setStopCounting] = useState(false)
+    let stopCounting = (currentValue === max || currentValue > max)
+    let color = stopCounting ? 'red' : 'inherit'
+
+    useEffect(() => {
+        // setStopCounting(false)
+        stopCounting = false
+    }, [min, max])
 
     const incrementHandler = () => {
-        increment()
+        dispatch(incrementAC(currentValue))
     }
     const resetHandler = () => {
-        reset()
+        dispatch(resetAC(min))
     }
     const disabledIncrement = (currentValue === max || currentValue > max)
     const disabledReset = (currentValue === min)

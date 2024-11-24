@@ -1,11 +1,13 @@
-type SetState = {
+export type SetState = {
     minValue: number
     maxValue: number
+    errorValue: boolean
 }
 
 const initialState = {
     minValue: 0,
-    maxValue: 10
+    maxValue: 10,
+    errorValue: false
 }
 
 
@@ -20,6 +22,9 @@ export const setDisplayReducer = (state: SetState = initialState, action: Action
         case "SET-MAXIMUM": {
             return {...state, maxValue: action.maxValue}
         }
+        case "SET-ERROR":{
+            return {...state, errorValue: action.errorValue}
+        }
         default: {
            return state
        }
@@ -31,11 +36,12 @@ export const setDisplayReducer = (state: SetState = initialState, action: Action
 type SetCounter = ReturnType<typeof setCounterAC>
 type SetMini = ReturnType<typeof setMiniAC>
 type SetMax = ReturnType<typeof setMaxAC>
+type SetError = ReturnType<typeof setErrorAC>
 
-type ActionsType = SetCounter | SetMini | SetMax
+type ActionsType = SetCounter | SetMini | SetMax | SetError
 
 
-const setCounterAC = (min: number, max: number) => {
+export const setCounterAC = (min: number, max: number) => {
     return {
         type: 'SET-COUNTER',
         min,
@@ -44,16 +50,23 @@ const setCounterAC = (min: number, max: number) => {
 
 }
 
-const setMiniAC = (minValue: number) => {
+export const setMiniAC = (minValue: number) => {
     return {
         type: 'SET-MINIMUM',
         minValue
     } as const
 }
 
-const setMaxAC = (maxValue: number) => {
+export const setMaxAC = (maxValue: number) => {
     return {
         type: 'SET-MAXIMUM',
         maxValue
+    } as const
+}
+
+export const setErrorAC = (errorValue: boolean) => {
+    return {
+        type: 'SET-ERROR',
+        errorValue
     } as const
 }
