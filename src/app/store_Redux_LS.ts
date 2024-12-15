@@ -1,8 +1,8 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import {combineReducers, createStore} from 'redux';
 import {setReducerLS} from "../common/reducers-redux-LS/set-reducer-LS";
 import {outputReducerLS} from "../common/reducers-redux-LS/output-reducer-LS";
 import {showReducerLS} from "../common/reducers-redux-LS/show-reducer-LS";
-import {thunk} from "redux-thunk";
+import {loadState, saveState} from "../utils/local-storage";
 
 export const rootReducer = combineReducers({
     setReduxLS: setReducerLS,
@@ -10,22 +10,17 @@ export const rootReducer = combineReducers({
     showOutput: showReducerLS
 });
 
-let preloadedState;
-const persistedCounterString = localStorage.getItem('counter-state')
-if(persistedCounterString) {
-    preloadedState = JSON.parse(persistedCounterString)
 
-}
+const persistedState = loadState();
+export const store = createStore(rootReducer, persistedState);
 
-
-export const store = createStore(rootReducer, preloadedState, applyMiddleware(thunk));
-// export const store = createStore(rootReducer,(window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-//     (window as any).__REDUX_DEVTOOLS_EXTENSION__());
 
 store.subscribe(() => {
-    localStorage.setItem('counter-state', JSON.stringify(store.getState()))
-    localStorage.setItem('min-value', JSON.stringify(store.getState().setReduxLS.minValue))
-    localStorage.setItem('max-value', JSON.stringify(store.getState().setReduxLS.maxValue))
+    saveState({
+        setReduxLS: store.getState().setReduxLS,
+        outputReduxLS: store.getState().outputReduxLS,
+        showOutput: store.getState().showOutput
+    })
 })
 export type AppStoreType = typeof store
 export type RootStateType = ReturnType<typeof store.getState>
