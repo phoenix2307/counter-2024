@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import {createGlobalStyle} from "styled-components";
-import App_UnitedCounter from "./app/App_UnitedCounter";
 import {Provider} from "react-redux";
-import {store} from "./app/store";
+import {store} from "./app/store_Redux_LS";
+import {App_Redux_LS} from "./app/App_Redux_LS";
 
 const Global = createGlobalStyle`
   * {
@@ -42,7 +41,9 @@ root.render(
         <Global/>
         <React.StrictMode>
             <Provider store={store}>
-                <App/>
+                {/*<App/>*/}
+                {/*<App_UnitedCounter/>*/}
+                <App_Redux_LS/>
             </Provider>
 
         </React.StrictMode>
